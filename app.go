@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	initVariables()
+	// initVariables()
 	printVariables()
 	fmt.Println("Rest API v2.0 - Mux Routers")
 	handleRequests()

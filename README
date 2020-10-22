@@ -3,8 +3,8 @@ API URL:
     Get Location List:
         (get)http://35.189.187.228:3010/location
 
-    Put A Location:
-        (put)http://35.189.187.228:3010/location 
+    Post A Location:
+        (post)http://35.189.187.228:3010/location 
 
         header['content-type']: application/json
         body:{"Location": {"Lat": 33,"Long": 54}}

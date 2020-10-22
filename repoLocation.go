@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	_ "fmt"
 	"github.com/lithammer/shortuuid"
 	"log"
 	"time"
@@ -12,6 +13,7 @@ func dbLocInsert(data Data) {
 	query := "INSERT INTO LOCATION(id,location, dateAdd) VALUES(?,?,?)"
 	str, _ := json.Marshal(data.Location)
 	_, err := db.Exec(query, shortuuid.New(), str, time.Now().UTC())
+
 	if err != nil {
 		log.Fatalln(err)
 	}

@@ -17,8 +17,8 @@ func checkSecurity(next httpHandlerFunc) httpHandlerFunc {
 
 func handleRequests() {
 	router := mux.NewRouter().StrictSlash(true)
-	router.HandleFunc("/location/", checkSecurity(getLocations)).Methods("Get")
-	router.HandleFunc("/location/", checkSecurity(putLocation)).Methods("Put")
+	router.HandleFunc("/location", checkSecurity(getLocations)).Methods("GET")
+	router.HandleFunc("/location", checkSecurity(putLocation)).Methods("POST")
 	log.Fatal(http.ListenAndServe(":3010", router))
 }
 
@@ -29,7 +29,6 @@ func getLocations(res http.ResponseWriter, req *http.Request) {
 }
 
 func putLocation(res http.ResponseWriter, req *http.Request) {
-
 	loc := new(Data)
 	err := json.NewDecoder(req.Body).Decode(loc)
 	if err != nil {
