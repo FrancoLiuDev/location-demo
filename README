@@ -1,0 +1,32 @@
+
+API URL:
+    Get Location List:
+        (get)http://35.189.187.228:3010/location
+
+    Put A Location:
+        (put)http://35.189.187.228:3010/location 
+
+        header['content-type']: application/json
+        body:{"Location": {"Lat": 33,"Long": 54}}
+   
+RUN DOCKER COMPOSE ON UBUNTU(18.4):
+    Requirement:
+        * install go
+        * install docker 
+        * install docker-compose
+        * install sql-migrate
+    
+    Build Application Image:
+        * in project ./ run:
+            sudo docker build -t location-app .
+    
+    Run Docker Compose:
+        * in project ./compose run:
+            bash core-service.sh
+
+    Initial Database:
+        * in project ./migration run: (不確定是否是正確的用法)
+            sql-migrate down -env="mysql"
+            sql-migrate up -env="mysql" (這裡會出錯)
+            sql-migrate skip -env="mysql"
+    Done

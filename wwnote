@@ -1,0 +1,9 @@
+ build docker:
+  sudo docker build -t location-app .
+
+run along:
+  docker run -it -d -p 3010:3010 --name location-app location-app 
+
+print logs:
+  sudo docker logs location-app
+ 
