@@ -4,11 +4,13 @@ import (
 	"time"
 )
 
+type Location struct {
+	Lat  float32
+	Long float32
+}
+
 type Data struct {
-	ID       string `db:"id"`
-	Location struct {
-		Lat  float32
-		Long float32
-	} `db:"location"`
+	ID        string    `db:"id"`
+	Location  Location  `db:"location"`
 	DateAdded time.Time `db:"dateAdd"`
 }

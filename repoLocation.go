@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"github.com/lithammer/shortuuid"
 	"log"
 	"time"
 )
@@ -10,7 +11,7 @@ func dbLocInsert(data Data) {
 	db := getTableLoc()
 	query := "INSERT INTO LOCATION(id,location, dateAdd) VALUES(?,?,?)"
 	str, _ := json.Marshal(data.Location)
-	_, err := db.Exec(query, data.ID, str, time.Now().UTC())
+	_, err := db.Exec(query, shortuuid.New(), str, time.Now().UTC())
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -33,10 +34,7 @@ func dbLocSelect() []Data {
 		}
 		id := results["id"].([]byte)
 		dateAdd := results["dateAdd"].(time.Time)
-		loc := new(struct {
-			Lat  float32
-			Long float32
-		})
+		loc := new(Location)
 		json.Unmarshal([]byte(string(results["location"].([]byte))), loc)
 		d := Data{ID: string(id), Location: *loc, DateAdded: dateAdd}
 		locs = append(locs, d)
